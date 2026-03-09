@@ -1,0 +1,321 @@
+openapi: 3.0.3
+info:
+  title: go-clean-auth-api
+  version: 1.0.0
+  description: Production-style clean architecture REST API in Go (Echo + pgx + PostgreSQL).
+servers:
+  - url: http://localhost:8080
+security:
+  - bearerAuth: []
+paths:
+  /health:
+    get:
+      summary: Health check
+      tags: [Health]
+      security: []
+      responses:
+        '200':
+          description: OK
+  /api/v1/auth/register:
+    post:
+      summary: Register user
+      tags: [Auth]
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterUserRequest'
+      responses:
+        '201':
+          description: User created
+  /api/v1/auth/login:
+    post:
+      summary: Login and receive JWT
+      tags: [Auth]
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      responses:
+        '200':
+          description: JWT issued
+  /api/v1/api-clients:
+    post:
+      summary: Register API client
+      tags: [API Clients]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterAPIClientRequest'
+      responses:
+        '201':
+          description: API key + secret generated
+  /api/v1/projects:
+    get:
+      summary: List projects
+      tags: [Projects]
+      parameters:
+        - in: query
+          name: page
+          schema: { type: integer, default: 1 }
+        - in: query
+          name: limit
+          schema: { type: integer, default: 20 }
+        - in: query
+          name: sort_by
+          schema: { type: string, example: created_at }
+        - in: query
+          name: sort_order
+          schema: { type: string, enum: [asc, desc], default: desc }
+      responses:
+        '200':
+          description: Paginated project list
+    post:
+      summary: Create project
+      tags: [Projects]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectWriteRequest'
+      responses:
+        '201':
+          description: Project created
+  /api/v1/projects/{id}:
+    get:
+      summary: Get project by id
+      tags: [Projects]
+      parameters:
+        - $ref: '#/components/parameters/IdPath'
+      responses:
+        '200':
+          description: Project details
+    put:
+      summary: Update project
+      tags: [Projects]
+      parameters:
+        - $ref: '#/components/parameters/IdPath'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectWriteRequest'
+      responses:
+        '200':
+          description: Updated project
+    delete:
+      summary: Soft delete project
+      tags: [Projects]
+      parameters:
+        - $ref: '#/components/parameters/IdPath'
+      responses:
+        '200':
+          description: Project deleted
+  /api/v1/tasks:
+    get:
+      summary: List tasks with pagination/filter/sort
+      tags: [Tasks]
+      parameters:
+        - in: query
+          name: page
+          schema: { type: integer, default: 1 }
+        - in: query
+          name: limit
+          schema: { type: integer, default: 20 }
+        - in: query
+          name: project_id
+          schema: { type: integer }
+        - in: query
+          name: assignee_id
+          schema: { type: integer }
+        - in: query
+          name: status
+          schema: { type: string, enum: [pending, in_progress, done] }
+        - in: query
+          name: sort_by
+          schema: { type: string, example: created_at }
+        - in: query
+          name: sort_order
+          schema: { type: string, enum: [asc, desc], default: desc }
+      responses:
+        '200':
+          description: Paginated tasks
+    post:
+      summary: Create task
+      tags: [Tasks]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTaskRequest'
+      responses:
+        '201':
+          description: Task created
+  /api/v1/tasks/{id}:
+    get:
+      summary: Get task by id
+      tags: [Tasks]
+      parameters:
+        - $ref: '#/components/parameters/IdPath'
+      responses:
+        '200':
+          description: Task details
+    put:
+      summary: Update task
+      tags: [Tasks]
+      parameters:
+        - $ref: '#/components/parameters/IdPath'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTaskRequest'
+      responses:
+        '200':
+          description: Task updated
+    delete:
+      summary: Soft delete task
+      tags: [Tasks]
+      parameters:
+        - $ref: '#/components/parameters/IdPath'
+      responses:
+        '200':
+          description: Task deleted
+  /api/v1/tasks/{id}/assign:
+    patch:
+      summary: Assign task to user
+      tags: [Tasks]
+      parameters:
+        - $ref: '#/components/parameters/IdPath'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssignTaskRequest'
+      responses:
+        '200':
+          description: Task assigned
+  /api/v1/tasks/{id}/status:
+    patch:
+      summary: Update task status
+      tags: [Tasks]
+      parameters:
+        - $ref: '#/components/parameters/IdPath'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTaskStatusRequest'
+      responses:
+        '200':
+          description: Status updated
+  /api/v1/client/projects/{project_id}/tasks:
+    get:
+      summary: List project tasks (API key protected)
+      tags: [Tasks]
+      security:
+        - apiKeyHeader: []
+      parameters:
+        - in: path
+          name: project_id
+          required: true
+          schema: { type: integer }
+        - in: query
+          name: page
+          schema: { type: integer, default: 1 }
+        - in: query
+          name: limit
+          schema: { type: integer, default: 20 }
+        - in: query
+          name: sort_by
+          schema: { type: string, example: created_at }
+        - in: query
+          name: sort_order
+          schema: { type: string, enum: [asc, desc], default: desc }
+      responses:
+        '200':
+          description: Paginated tasks
+components:
+  parameters:
+    IdPath:
+      in: path
+      name: id
+      required: true
+      schema:
+        type: integer
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+    apiKeyHeader:
+      type: apiKey
+      in: header
+      name: X-API-Key
+  schemas:
+    RegisterUserRequest:
+      type: object
+      required: [name, email, password]
+      properties:
+        name: { type: string, minLength: 2 }
+        email: { type: string, format: email }
+        password: { type: string, minLength: 8 }
+    LoginRequest:
+      type: object
+      required: [email, password]
+      properties:
+        email: { type: string, format: email }
+        password: { type: string }
+    RegisterAPIClientRequest:
+      type: object
+      required: [name]
+      properties:
+        name: { type: string, minLength: 3 }
+    ProjectWriteRequest:
+      type: object
+      required: [name]
+      properties:
+        name: { type: string }
+        description: { type: string }
+    CreateTaskRequest:
+      type: object
+      required: [project_id, title, status]
+      properties:
+        project_id: { type: integer }
+        assignee_id: { type: integer }
+        title: { type: string }
+        description: { type: string }
+        status: { type: string, enum: [pending, in_progress, done] }
+        due_date: { type: string, format: date-time }
+    UpdateTaskRequest:
+      type: object
+      required: [title, status]
+      properties:
+        assignee_id: { type: integer }
+        title: { type: string }
+        description: { type: string }
+        status: { type: string, enum: [pending, in_progress, done] }
+        due_date: { type: string, format: date-time }
+    AssignTaskRequest:
+      type: object
+      required: [assignee_id]
+      properties:
+        assignee_id: { type: integer }
+    UpdateTaskStatusRequest:
+      type: object
+      required: [status]
+      properties:
+        status: { type: string, enum: [pending, in_progress, done] }
