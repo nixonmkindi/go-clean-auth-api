@@ -10,11 +10,11 @@ import (
 
 	"github.com/jackc/pgx/v5"
 	"github.com/labstack/echo/v4"
+	"github.com/nixonmkindi/go-clean-auth-api/internal/domain"
+	customvalidator "github.com/nixonmkindi/go-clean-auth-api/internal/pkg/validator"
+	"github.com/nixonmkindi/go-clean-auth-api/internal/usecase"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"github.com/yourusername/go-clean-auth-api/internal/domain"
-	customvalidator "github.com/yourusername/go-clean-auth-api/internal/pkg/validator"
-	"github.com/yourusername/go-clean-auth-api/internal/usecase"
 	"golang.org/x/crypto/bcrypt"
 )
 

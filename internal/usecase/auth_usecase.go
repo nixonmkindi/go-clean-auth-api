@@ -10,9 +10,9 @@ import (
 	"github.com/golang-jwt/jwt/v5"
 	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgconn"
-	"github.com/yourusername/go-clean-auth-api/internal/domain"
-	"github.com/yourusername/go-clean-auth-api/internal/pkg/apperror"
-	"github.com/yourusername/go-clean-auth-api/internal/repository"
+	"github.com/nixonmkindi/go-clean-auth-api/internal/domain"
+	"github.com/nixonmkindi/go-clean-auth-api/internal/pkg/apperror"
+	"github.com/nixonmkindi/go-clean-auth-api/internal/repository"
 	"golang.org/x/crypto/bcrypt"
 )
 

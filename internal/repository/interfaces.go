@@ -3,7 +3,7 @@ package repository
 import (
 	"context"
 
-	"github.com/yourusername/go-clean-auth-api/internal/domain"
+	"github.com/nixonmkindi/go-clean-auth-api/internal/domain"
 )
 
 type UserRepository interface {

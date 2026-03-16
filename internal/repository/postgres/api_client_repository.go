@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"github.com/jackc/pgx/v5/pgxpool"
-	"github.com/yourusername/go-clean-auth-api/internal/domain"
+	"github.com/nixonmkindi/go-clean-auth-api/internal/domain"
 )
 
 type APIClientRepository struct {

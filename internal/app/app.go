@@ -6,16 +6,16 @@ import (
 
 	"github.com/jackc/pgx/v5/pgxpool"
 	"github.com/labstack/echo/v4"
-	"github.com/yourusername/go-clean-auth-api/internal/config"
-	"github.com/yourusername/go-clean-auth-api/internal/database"
-	"github.com/yourusername/go-clean-auth-api/internal/http/controllers"
-	custommw "github.com/yourusername/go-clean-auth-api/internal/http/middleware"
-	"github.com/yourusername/go-clean-auth-api/internal/http/responses"
-	"github.com/yourusername/go-clean-auth-api/internal/http/routes"
-	"github.com/yourusername/go-clean-auth-api/internal/pkg/logger"
-	customvalidator "github.com/yourusername/go-clean-auth-api/internal/pkg/validator"
-	"github.com/yourusername/go-clean-auth-api/internal/repository/postgres"
-	"github.com/yourusername/go-clean-auth-api/internal/usecase"
+	"github.com/nixonmkindi/go-clean-auth-api/internal/config"
+	"github.com/nixonmkindi/go-clean-auth-api/internal/database"
+	"github.com/nixonmkindi/go-clean-auth-api/internal/http/controllers"
+	custommw "github.com/nixonmkindi/go-clean-auth-api/internal/http/middleware"
+	"github.com/nixonmkindi/go-clean-auth-api/internal/http/responses"
+	"github.com/nixonmkindi/go-clean-auth-api/internal/http/routes"
+	"github.com/nixonmkindi/go-clean-auth-api/internal/pkg/logger"
+	customvalidator "github.com/nixonmkindi/go-clean-auth-api/internal/pkg/validator"
+	"github.com/nixonmkindi/go-clean-auth-api/internal/repository/postgres"
+	"github.com/nixonmkindi/go-clean-auth-api/internal/usecase"
 )
 
 type Application struct {

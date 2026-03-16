@@ -4,8 +4,8 @@ import (
 	"context"
 	"net/http"
 
-	"github.com/yourusername/go-clean-auth-api/internal/domain"
-	"github.com/yourusername/go-clean-auth-api/internal/pkg/apperror"
+	"github.com/nixonmkindi/go-clean-auth-api/internal/domain"
+	"github.com/nixonmkindi/go-clean-auth-api/internal/pkg/apperror"
 
 	"github.com/labstack/echo/v4"
 )

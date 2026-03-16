@@ -4,11 +4,11 @@ import (
 	"context"
 	"testing"
 
+	"github.com/nixonmkindi/go-clean-auth-api/internal/domain"
+	"github.com/nixonmkindi/go-clean-auth-api/internal/pkg/apperror"
+	"github.com/nixonmkindi/go-clean-auth-api/internal/repository"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"github.com/yourusername/go-clean-auth-api/internal/domain"
-	"github.com/yourusername/go-clean-auth-api/internal/pkg/apperror"
-	"github.com/yourusername/go-clean-auth-api/internal/repository"
 )
 
 type mockTaskRepo struct {

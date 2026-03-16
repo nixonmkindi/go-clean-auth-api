@@ -6,8 +6,8 @@ import (
 	"time"
 
 	"github.com/jackc/pgx/v5/pgxpool"
-	"github.com/yourusername/go-clean-auth-api/internal/domain"
-	"github.com/yourusername/go-clean-auth-api/internal/repository"
+	"github.com/nixonmkindi/go-clean-auth-api/internal/domain"
+	"github.com/nixonmkindi/go-clean-auth-api/internal/repository"
 )
 
 type ProjectRepository struct {

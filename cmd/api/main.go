@@ -8,7 +8,7 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/yourusername/go-clean-auth-api/internal/app"
+	"github.com/nixonmkindi/go-clean-auth-api/internal/app"
 )
 
 func main() {

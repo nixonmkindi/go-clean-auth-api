@@ -1,4 +1,4 @@
-module github.com/yourusername/go-clean-auth-api
+module github.com/nixonmkindi/go-clean-auth-api
 
 go 1.23.0
 

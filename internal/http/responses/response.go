@@ -7,7 +7,7 @@ import (
 
 	"github.com/go-playground/validator/v10"
 	"github.com/labstack/echo/v4"
-	"github.com/yourusername/go-clean-auth-api/internal/pkg/apperror"
+	"github.com/nixonmkindi/go-clean-auth-api/internal/pkg/apperror"
 )
 
 type Envelope struct {

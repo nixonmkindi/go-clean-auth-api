@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"github.com/labstack/echo/v4"
-	"github.com/yourusername/go-clean-auth-api/internal/http/responses"
+	"github.com/nixonmkindi/go-clean-auth-api/internal/http/responses"
 )
 
 type HealthController struct{}

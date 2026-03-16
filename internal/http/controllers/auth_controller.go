@@ -4,9 +4,9 @@ import (
 	"net/http"
 
 	"github.com/labstack/echo/v4"
-	"github.com/yourusername/go-clean-auth-api/internal/http/requests"
-	"github.com/yourusername/go-clean-auth-api/internal/http/responses"
-	"github.com/yourusername/go-clean-auth-api/internal/usecase"
+	"github.com/nixonmkindi/go-clean-auth-api/internal/http/requests"
+	"github.com/nixonmkindi/go-clean-auth-api/internal/http/responses"
+	"github.com/nixonmkindi/go-clean-auth-api/internal/usecase"
 )
 
 type AuthController struct {

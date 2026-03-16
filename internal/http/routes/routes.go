@@ -3,8 +3,8 @@ package routes
 import (
 	"github.com/labstack/echo/v4"
 	echomw "github.com/labstack/echo/v4/middleware"
-	"github.com/yourusername/go-clean-auth-api/internal/http/controllers"
-	custommw "github.com/yourusername/go-clean-auth-api/internal/http/middleware"
+	"github.com/nixonmkindi/go-clean-auth-api/internal/http/controllers"
+	custommw "github.com/nixonmkindi/go-clean-auth-api/internal/http/middleware"
 )
 
 type Dependencies struct {

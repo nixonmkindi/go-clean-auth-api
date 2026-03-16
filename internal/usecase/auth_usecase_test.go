@@ -5,10 +5,10 @@ import (
 	"testing"
 
 	"github.com/jackc/pgx/v5"
+	"github.com/nixonmkindi/go-clean-auth-api/internal/domain"
+	"github.com/nixonmkindi/go-clean-auth-api/internal/pkg/apperror"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"github.com/yourusername/go-clean-auth-api/internal/domain"
-	"github.com/yourusername/go-clean-auth-api/internal/pkg/apperror"
 	"golang.org/x/crypto/bcrypt"
 )
 
